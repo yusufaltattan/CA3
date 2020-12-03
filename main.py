@@ -10,12 +10,12 @@ import pyttsx3
 import logging
 from datetime import datetime
 from announcement import announce
-from time_conversions import hhmm_to_seconds
-from time_conversions import current_time_hhmm
+
 # Internal Packages
 import main_notification
 import main_alarm
 
+'''Main Page'''
 app = Flask(__name__)
 
 s = sched.scheduler(time.time, time.sleep)
@@ -23,6 +23,7 @@ logging.basicConfig(level=logging.DEBUG,filename='sys.log')
 
 @app.route('/')
 def hello():
+    '''Redirects'''
     return redirect('/index')
 
 @app.route('/index')
@@ -31,7 +32,7 @@ def main():
     Function for the whole system
     '''
     logging.info('Main page accessed.')
-    
+
     try:
         # Check if notification is sent to be deleted
         notification = request.args.get('notif')
@@ -41,7 +42,6 @@ def main():
             return redirect(request.path, code=302)
     except:
         logging.error('Error occured while trying to delete notification')
-    
     try:
         # Check if alarm is sent to be deleted
         alarm = request.args.get('alarm_item')
@@ -51,9 +51,6 @@ def main():
             return redirect(request.path, code=302)
     except:
         logging.error('Error occured while trying to delete alarm announcement')
-    
-
-    '''Function for the announcement alarm'''
 
     s.run(blocking=False)
     try:
@@ -72,11 +69,12 @@ def main():
         logging.error('Error occured while trying to submit alarm')
 
     return render_template('template.html', title='Daily update',
-     notifications = main_notification.getNotifications(), 
+     notifications = main_notification.getNotifications(),
      alarms= main_alarm.getAlarms(),
      image='af3ed088eb35793c077894f48f383e84.jpg')
 
 def AddAlarm(alarm_time, alarm_label, alarm_isNewsIncluded, alarm_isWeatherIncluded):
+    '''Adds Alarm'''
     # Create Alarm Object
     alarm = {"alarm_time": alarm_time,
     "title": alarm_label,
@@ -84,7 +82,7 @@ def AddAlarm(alarm_time, alarm_label, alarm_isNewsIncluded, alarm_isWeatherInclu
     "alarm_isNewsIncluded": alarm_isNewsIncluded,
     "alarm_isWeatherIncluded": alarm_isWeatherIncluded,
     }
-    
+
     #convert alarm_time to a delay
     d1 = datetime.strptime(alarm_time, "%Y-%m-%dT%H:%M")
     d2 = datetime.now()

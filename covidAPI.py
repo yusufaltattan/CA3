@@ -48,4 +48,3 @@ def covid():
     return covid_dict
 
 print(covid())
-

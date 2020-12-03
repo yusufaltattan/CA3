@@ -1,6 +1,6 @@
 import newsAPI
 import weatherAPI
-
+'''Main Notifications'''
 notification_list = []
 
 def addNotification(notification):
@@ -9,12 +9,13 @@ def addNotification(notification):
         if notification['alarm_isNewsIncluded']:
             #Checks if news is ticked
             latest_news = newsAPI.extract(0)
-            notification_list.append({'title': notification['title'] + ' - News', 'content':latest_news['content']})
-        
+            notification_list.append({'title': notification['title'] +
+            ' - News', 'content':latest_news['content']})
         if notification['alarm_isWeatherIncluded']:
             #Checks if weather was ticked
             latest_weather = weatherAPI.weather_today()
-            notification_list.append({'title': notification['title'] + ' - Weather', 'content':latest_weather['content']})
+            notification_list.append({'title': notification['title']+
+            ' - Weather', 'content':latest_weather['content']})
         # notification_list.append(notification)
     else:
         False

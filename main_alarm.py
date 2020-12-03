@@ -1,5 +1,5 @@
 from announcement import announce
-
+'''Main Alarms'''
 alarms_list = []
 
 def addAlarm(alarm):
