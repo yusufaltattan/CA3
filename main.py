@@ -72,7 +72,7 @@ def AddAlarm(alarm_time, alarm_label, alarm_isNewsIncluded, alarm_isWeatherInclu
     delay = (d1 - d2).seconds - 50
     s.enter(int(delay), 1, main_alarm.addAlarm, [alarm ,])
     s.enter(int(delay), 1, main_notification.addNotification, [alarm ,])
-    #s.enter(int(delay)+5, 1, announce, [alarm['title'] ,])
+    ##s.enter(int(delay)+5, 1, announce, [alarm['title'] ,])
 
 if __name__ == '__main__':
     app.run()
