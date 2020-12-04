@@ -16,8 +16,7 @@ def weather_today():
     wind_compass_maping ={0:"north",1:"north-east", 2:"east", 3:"south-east", 4:"south", 5:"south-west", 6:"west", 7:"north-west"}
     wind_compass_dir = wind_compass_maping[wind_compass_sector]
 
-    description_final = "The weather is " + description + " with a temperature of " +
-    temp + " in degrees Celsius and wind blowing to the " + wind_compass_dir + "."
+    description_final = "The weather is " + description + " with a temperature of " + temp + " in degrees Celsius and wind blowing to the " + wind_compass_dir + "."
 
     notifications_dict =  {"title" :"Weather", "content": description_final}
     return notifications_dict
